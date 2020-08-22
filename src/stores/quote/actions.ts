@@ -1,8 +1,8 @@
 import { action } from 'typesafe-actions';
-import { QuoteActionTypes, QuoteState } from './types';
+import { QrCodeActionTypes, QuoteState } from './types';
 
-export const fetchQuote = () => action(QuoteActionTypes.FETCH_QUOTES);
+export const fetchQrCode = () => action(QuoteActionTypes.FETCH_QR_CODE);
 
-export const fetchQuoteSuccess = (payload: QuoteState) => {
-  return action(QuoteActionTypes.FETCH_QUOTES_SUCCESS, payload);
+export const fetchQrCodeSuccess = (payload: QuoteState) => {
+  return action(QuoteActionTypes.FETCH_QR_CODE_SUCCESS, payload);
 };
