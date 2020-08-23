@@ -1,20 +1,25 @@
 import { Reducer } from 'redux';
-import { QuoteState, QuoteActions, QuoteActionTypes } from './types';
+import { QrCodeState, QrCodeActions, QrCodeActionTypes } from './types';
 
-const initialState: QuoteState = {
-  author: 'Kanye West',
-  quote: "I'd like to meet with Tim Cook.I got some ideas",
-  title: 'A quote from Kanye',
+const initialState: QrCodeState = {
+  QrCode: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAA..',
+  listOfStoredQrCodes: [],
 };
 
-const quoteReducer: Reducer<QuoteState, QuoteActions> = (
+const qrCodeReducer: Reducer<QrCodeState, QrCodeActions> = (
   state = initialState,
   action,
 ) => {
   switch (action.type) {
-    case QuoteActionTypes.FETCH_QUOTES_SUCCESS: {
-      const { author, quote, title } = action.payload;
-      return { ...state, author, quote, title };
+    case QrCodeActionTypes.STORE_QR_CODE: {
+      const QrCode = action.payload;
+      return {
+        ...state,
+        listOfStoredQrCodes: [...state.listOfStoredQrCodes, QrCode],
+      };
+    }
+    case QrCodeActionTypes.FETCH_QR_CODE: {
+      return state;
     }
     default: {
       return state;
@@ -22,4 +27,4 @@ const quoteReducer: Reducer<QuoteState, QuoteActions> = (
   }
 };
 
-export default quoteReducer;
+export default qrCodeReducer;

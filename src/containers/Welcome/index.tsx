@@ -5,6 +5,10 @@ import CenteredView from '@src/components/General/CenteredView';
 import { TitleText } from '@src/components/General/Typography';
 import theme from '@src/utils/theme';
 import { ReactNativeSVG } from '@src/assets';
+import { createStackNavigator } from '@react-navigation/stack';
+import Quote from '@src/containers/Quote';
+
+const Stack = createStackNavigator();
 
 const Welcome = () => {
   const navigation = useNavigation();

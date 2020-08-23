@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from '@src/stores';
-import { fetchQuote } from '@src/stores/quote/actions';
+import { storeQrCode } from '@src/stores/qrCode/actions';
 import {
   View,
   Text,
@@ -15,27 +15,23 @@ import CenteredView from '@src/components/General/CenteredView';
 import { RNCamera } from 'react-native-camera';
 
 const Quote = () => {
-  const { author, quote, title } = useSelector((state) => state.quote);
   const dispatch = useDispatch();
-  useEffect(() => {
-    // dispatch(fetchQuote());
-  }, []);
-  const onSuccess = (e) => {
+  const [QrCode, setQrCode] = useState('');
+
+  const onSuccess = async (e) => {
+    await setQrCode(JSON.stringify(e.data));
+    dispatch(storeQrCode(e.data));
     Linking.openURL(e.data).catch((err) =>
       console.error('An error occured', err),
     );
   };
+
   return (
     <CenteredView>
       <QRCodeScanner
         onRead={onSuccess}
-        // flashMode={RNCamera.Constants.FlashMode.auto}
-        topContent={
-          <Text style={styles.centerText}>
-            Go to{' '}
-            <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text>
-          </Text>
-        }
+        flashMode={RNCamera.Constants.FlashMode.auto}
+        topContent={<Text>Qr Code Scanner</Text>}
         bottomContent={
           <TouchableOpacity style={styles.buttonTouchable}>
             <Text style={styles.buttonText}>Capture</Text>

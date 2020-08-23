@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Welcome from '@src/containers/Welcome';
 import Quote from '@src/containers/Quote';
 import CaptureQrCode from '@src/containers/CaptureQrCode';
@@ -21,20 +21,15 @@ const RootNavigator = () => {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === 'CaptureQRCode') {
-            iconName = focused
-              ? 'ios-information-circle'
-              : 'ios-information-circle-outline';
-          } else if (route.name === 'ViewQrCode') {
-            iconName = focused ? 'ios-list-box' : 'ios-list';
+          if (route.name === 'CaptureQrCode') {
+            iconName = focused ? 'barcode' : 'barcode';
+          } else if (route.name === 'ScanQrCode') {
+            iconName = focused ? 'qrcode' : 'qrcode';
           } else if (route.name === 'Welcome') {
-            iconName = focused
-              ? 'ios-information-circle'
-              : 'ios-information-circle-outline';
+            iconName = focused ? 'home' : 'home';
           }
-
           // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Icon name={iconName} size={size} color={color} />;
         },
       })}
       tabBarOptions={{
@@ -43,7 +38,7 @@ const RootNavigator = () => {
       }}>
       <Tab.Screen name="Welcome" component={Welcome} />
       <Tab.Screen name="CaptureQrCode" component={CaptureQrCode} />
-      <Tab.Screen name="ViewQRCode" component={ViewQrCode} />
+      <Tab.Screen name="ScanQrCode" component={ViewQrCode} />
     </Tab.Navigator>
   );
 };

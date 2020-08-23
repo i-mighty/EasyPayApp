@@ -1,4 +1,4 @@
-import quote from '@src/stores/quote/reducer';
-import quoteSaga from '@src/stores/quote/saga';
+import qrCode from '@src/stores/qrCode/reducer';
+import qrCodeSaga from '@src/stores/qrCode/saga';
 
-export { quote, quoteSaga };
+export { qrCode, qrCodeSaga };
