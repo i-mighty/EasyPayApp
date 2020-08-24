@@ -6,6 +6,7 @@ import {
 import createSagaMiddleware from 'redux-saga';
 import { appNotification } from '@src/stores/appNotification';
 import { quote } from '@src/stores/quote';
+import { qrCode } from '@src/stores/qrCode';
 import saga from '@src/stores/saga';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -13,6 +14,7 @@ const sagaMiddleware = createSagaMiddleware();
 const rootReducer = combineReducers({
   appNotification,
   quote,
+  qrCode,
 });
 
 const configureStore = () => {
